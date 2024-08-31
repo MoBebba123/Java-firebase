@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "67520523019",
+    "project_id": "hochschule-koblenz-chat-2e7d0",
+    "storage_bucket": "hochschule-koblenz-chat-2e7d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67520523019:android:93338ea34be6a1a369d00e",
+        "android_client_info": {
+          "package_name": "com.example.hochschule_koblenz_chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjcUfgoOvhIaKjHXgLWevZWCl-6zl4sfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
