@@ -79,7 +79,7 @@ public class ChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatMessageMod
      * Der ChatModelViewHolder hält die UI-Komponenten für jedes Listenelement.
      * Er enthält die Layouts und TextViews für gesendete und empfangene Nachrichten.
      */
-    class ChatModelViewHolder extends RecyclerView.ViewHolder {
+    static class ChatModelViewHolder extends RecyclerView.ViewHolder {
 
         // Layouts und TextViews für die Anzeige von gesendeten und empfangenen Nachrichten
         LinearLayout leftChatLayout, rightChatLayout; // Layouts für Nachrichten des anderen Benutzers und des aktuellen Benutzers
