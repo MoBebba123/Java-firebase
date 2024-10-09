@@ -3,9 +3,12 @@ package com.example.hochschule_koblenz_chat_app.model;
 import com.google.firebase.Timestamp;
 
 /**
- * Die ChatMessageModel-Klasse repräsentiert eine einzelne Chat-Nachricht in der Anwendung.
- * Sie enthält Informationen über den Nachrichtentext, die ID des Absenders und den Zeitstempel der Nachricht.
- * Autor: Mohamed Bebba
+ * Die ChatMessageModel-Klasse repräsentiert eine einzelne Chat-Nachricht in der
+ * Anwendung.
+ * Sie enthält Informationen über den Nachrichtentext, die ID des Absenders und
+ * den Zeitstempel der Nachricht.
+ * 
+ * @autor: Mohamed Bebba
  */
 public class ChatMessageModel {
 

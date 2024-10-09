@@ -21,10 +21,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import java.util.Objects;
 
 /**
- * Die LoginUsernameActivity ermöglicht es dem Benutzer, einen Benutzernamen einzugeben und
+ * Die LoginUsernameActivity ermöglicht es dem Benutzer, einen Benutzernamen
+ * einzugeben und
  * sich mit diesem in die Anwendung einzuloggen.
  * Sie verwaltet die Eingabe, Überprüfung und Speicherung des Benutzernamens.
- * Autor: Mohamed Bebba
+ * 
+ * @autor: Mohamed Bebba
  */
 public class LoginUsernameActivity extends AppCompatActivity {
 
@@ -46,7 +48,8 @@ public class LoginUsernameActivity extends AppCompatActivity {
      * Sie initialisiert die UI-Komponenten und ruft den aktuellen Benutzernamen ab,
      * falls dieser bereits existiert.
      *
-     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand der Aktivität enthält.
+     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand
+     *                           der Aktivität enthält.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,8 @@ public class LoginUsernameActivity extends AppCompatActivity {
 
     /**
      * Verarbeitet den Klick auf den "Let Me In"-Button.
-     * Überprüft die Eingaben, erstellt oder aktualisiert das UserModel und speichert die Daten in Firestore.
+     * Überprüft die Eingaben, erstellt oder aktualisiert das UserModel und
+     * speichert die Daten in Firestore.
      */
     void setUsername() {
         String username = usernameInput.getText().toString();
@@ -106,7 +110,8 @@ public class LoginUsernameActivity extends AppCompatActivity {
     }
 
     /**
-     * Ruft den aktuellen Benutzernamen aus Firestore ab und zeigt ihn in der Eingabemaske an, falls vorhanden.
+     * Ruft den aktuellen Benutzernamen aus Firestore ab und zeigt ihn in der
+     * Eingabemaske an, falls vorhanden.
      */
     void getUsername() {
         setInProgress(true);
@@ -130,7 +135,8 @@ public class LoginUsernameActivity extends AppCompatActivity {
     }
 
     /**
-     * Setzt den Fortschrittsstatus und aktualisiert die Sichtbarkeit der UI-Komponenten entsprechend.
+     * Setzt den Fortschrittsstatus und aktualisiert die Sichtbarkeit der
+     * UI-Komponenten entsprechend.
      *
      * @param inProgress Gibt an, ob die Aktion im Gange ist.
      */

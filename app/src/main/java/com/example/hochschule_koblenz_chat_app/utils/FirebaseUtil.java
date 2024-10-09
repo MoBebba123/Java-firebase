@@ -14,16 +14,20 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
- * Die FirebaseUtil-Klasse stellt Hilfsfunktionen für die Interaktion mit Firebase Auth, Firestore und Firebase Storage bereit.
- * Sie bietet Methoden zur Verwaltung von Benutzerdaten, Chatrooms, Nachrichten und Profilbildern.
- * Autor: Mohamed Bebba
+ * Die FirebaseUtil-Klasse stellt Hilfsfunktionen für die Interaktion mit
+ * Firebase Auth, Firestore und Firebase Storage bereit.
+ * Sie bietet Methoden zur Verwaltung von Benutzerdaten, Chatrooms, Nachrichten
+ * und Profilbildern.
+ * 
+ * @autor: Mohamed Bebba
  */
 public class FirebaseUtil {
 
     /**
      * Gibt die aktuelle Benutzer-ID des angemeldeten Benutzers zurück.
      *
-     * @return Die Benutzer-ID des aktuell angemeldeten Benutzers oder null, wenn nicht angemeldet.
+     * @return Die Benutzer-ID des aktuell angemeldeten Benutzers oder null, wenn
+     *         nicht angemeldet.
      */
     public static String currentUserId() {
         return FirebaseAuth.getInstance().getUid();
@@ -67,10 +71,12 @@ public class FirebaseUtil {
     }
 
     /**
-     * Gibt die CollectionReference für die Nachrichten eines bestimmten Chatrooms zurück.
+     * Gibt die CollectionReference für die Nachrichten eines bestimmten Chatrooms
+     * zurück.
      *
      * @param chatroomId Die ID des Chatrooms.
-     * @return Die CollectionReference der Nachrichten innerhalb des angegebenen Chatrooms.
+     * @return Die CollectionReference der Nachrichten innerhalb des angegebenen
+     *         Chatrooms.
      */
     public static CollectionReference getChatroomMessageReference(String chatroomId) {
         return getChatroomReference(chatroomId).collection("chats");
@@ -78,7 +84,8 @@ public class FirebaseUtil {
 
     /**
      * Generiert eine Chatroom-ID basierend auf den Benutzer-IDs der Teilnehmer.
-     * Die IDs werden lexikografisch sortiert, um eine konsistente Chatroom-ID zu erzeugen.
+     * Die IDs werden lexikografisch sortiert, um eine konsistente Chatroom-ID zu
+     * erzeugen.
      *
      * @param userId1 Die Benutzer-ID des ersten Teilnehmers.
      * @param userId2 Die Benutzer-ID des zweiten Teilnehmers.
@@ -102,7 +109,8 @@ public class FirebaseUtil {
     }
 
     /**
-     * Gibt die DocumentReference des anderen Benutzers im Chatroom zurück, basierend auf den Benutzer-IDs.
+     * Gibt die DocumentReference des anderen Benutzers im Chatroom zurück,
+     * basierend auf den Benutzer-IDs.
      *
      * @param userIds Die Liste der Benutzer-IDs im Chatroom.
      * @return Die DocumentReference des anderen Benutzers im Chatroom.

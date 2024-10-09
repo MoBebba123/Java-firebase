@@ -6,9 +6,12 @@ import java.util.List;
 
 /**
  * Die ChatroomModel-Klasse repräsentiert einen Chatraum in der Anwendung.
- * Sie enthält Informationen über die Chatraum-ID, die Benutzer-IDs der Teilnehmer,
- * den Zeitstempel der letzten Nachricht, die ID des Absenders der letzten Nachricht und den Inhalt der letzten Nachricht.
- * Autor: Mohamed Bebba
+ * Sie enthält Informationen über die Chatraum-ID, die Benutzer-IDs der
+ * Teilnehmer,
+ * den Zeitstempel der letzten Nachricht, die ID des Absenders der letzten
+ * Nachricht und den Inhalt der letzten Nachricht.
+ * 
+ * @autor: Mohamed Bebba
  */
 public class ChatroomModel {
 
@@ -29,11 +32,15 @@ public class ChatroomModel {
      * Konstruktor für ChatroomModel mit Parametern.
      *
      * @param chatroomId           Die ID des Chatrooms.
-     * @param userIds              Die Liste der Benutzer-IDs der Teilnehmer im Chatroom.
-     * @param lastMessageTimestamp Der Zeitstempel der letzten Nachricht im Chatroom.
-     * @param lastMessageSenderId  Die Benutzer-ID des Absenders der letzten Nachricht.
+     * @param userIds              Die Liste der Benutzer-IDs der Teilnehmer im
+     *                             Chatroom.
+     * @param lastMessageTimestamp Der Zeitstempel der letzten Nachricht im
+     *                             Chatroom.
+     * @param lastMessageSenderId  Die Benutzer-ID des Absenders der letzten
+     *                             Nachricht.
      */
-    public ChatroomModel(String chatroomId, List<String> userIds, Timestamp lastMessageTimestamp, String lastMessageSenderId) {
+    public ChatroomModel(String chatroomId, List<String> userIds, Timestamp lastMessageTimestamp,
+            String lastMessageSenderId) {
         this.chatroomId = chatroomId;
         this.userIds = userIds;
         this.lastMessageTimestamp = lastMessageTimestamp;

@@ -15,10 +15,13 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 /**
- * Die MainActivity-Klasse ist die Hauptaktivität der Anwendung, die als Einstiegspunkt dient.
- * Sie verwaltet die Navigation zwischen verschiedenen Fragmenten (Chat und Profil) und
+ * Die MainActivity-Klasse ist die Hauptaktivität der Anwendung, die als
+ * Einstiegspunkt dient.
+ * Sie verwaltet die Navigation zwischen verschiedenen Fragmenten (Chat und
+ * Profil) und
  * abonniert den FCM-Token (Firebase Cloud Messaging).
- * Autor: Mohamed Bebba
+ * 
+ * @autor: Mohamed Bebba
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
      * Sie initialisiert die Benutzeroberfläche und die Fragmente,
      * setzt Listener für die Navigation und den Such-Button und holt den FCM-Token.
      *
-     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand der Aktivität enthält.
+     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand
+     *                           der Aktivität enthält.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +57,26 @@ public class MainActivity extends AppCompatActivity {
         // Verknüpfen des Such-Buttons mit der Layout-Datei.
         searchButton = findViewById(R.id.main_search_btn);
 
-        // Setzen eines OnClickListeners auf den Such-Button, um zur Suchaktivität zu navigieren.
+        // Setzen eines OnClickListeners auf den Such-Button, um zur Suchaktivität zu
+        // navigieren.
         searchButton.setOnClickListener((v) -> {
             startActivity(new Intent(MainActivity.this, SearchUserActivity.class));
         });
 
-        // Setzen eines OnItemSelectedListener auf die BottomNavigationView für die Navigation zwischen Fragmenten.
+        // Setzen eines OnItemSelectedListener auf die BottomNavigationView für die
+        // Navigation zwischen Fragmenten.
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 // Überprüfen, ob das ausgewählte Menüelement der Chat-Bereich ist.
                 if (item.getItemId() == R.id.menu_chat) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, chatFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, chatFragment)
+                            .commit();
                 }
                 // Überprüfen, ob das ausgewählte Menüelement der Profil-Bereich ist.
                 if (item.getItemId() == R.id.menu_profile) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, profileFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_layout, profileFragment)
+                            .commit();
                 }
                 return true;
             }
@@ -82,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Diese Methode holt den FCM-Token (Firebase Cloud Messaging) und speichert ihn in der
+     * Diese Methode holt den FCM-Token (Firebase Cloud Messaging) und speichert ihn
+     * in der
      * Benutzerdatenbank mittels FirebaseUtil.
      */
     void getFCMToken() {

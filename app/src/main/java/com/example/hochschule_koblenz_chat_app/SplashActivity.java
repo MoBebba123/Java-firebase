@@ -12,9 +12,12 @@ import com.example.hochschule_koblenz_chat_app.utils.FirebaseUtil;
 
 /**
  * Die SplashActivity-Klasse dient als Startbildschirm der Anwendung.
- * Sie zeigt das Splash-Layout an, überprüft den Anmeldestatus des Benutzers und leitet entsprechend weiter.
- * Falls eine Benachrichtigung vorhanden ist, wird der Benutzer direkt zur Chat-Aktivität geleitet.
- * Autor: Mohamed Bebba
+ * Sie zeigt das Splash-Layout an, überprüft den Anmeldestatus des Benutzers und
+ * leitet entsprechend weiter.
+ * Falls eine Benachrichtigung vorhanden ist, wird der Benutzer direkt zur
+ * Chat-Aktivität geleitet.
+ * 
+ * @autor: Mohamed Bebba
  */
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -24,7 +27,8 @@ public class SplashActivity extends AppCompatActivity {
      * Sie zeigt das Splash-Layout an und leitet den Benutzer basierend auf
      * Anmeldestatus oder Benachrichtigungsdaten weiter.
      *
-     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand der Aktivität enthält.
+     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand
+     *                           der Aktivität enthält.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,8 @@ public class SplashActivity extends AppCompatActivity {
                     });
 
         } else {
-            // Verzögerter Start der nächsten Aktivität, abhängig vom Anmeldestatus des Benutzers.
+            // Verzögerter Start der nächsten Aktivität, abhängig vom Anmeldestatus des
+            // Benutzers.
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

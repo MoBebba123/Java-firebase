@@ -17,11 +17,15 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 /**
- * Der ChatRecyclerAdapter ist ein Adapter für eine RecyclerView, die Chat-Nachrichten in einer Chat-Aktivität anzeigt.
- * Er verwaltet die Anzeige von gesendeten und empfangenen Nachrichten und ordnet sie entsprechend dem Sender an.
- * Autor: Mohamed Bebba
+ * Der ChatRecyclerAdapter ist ein Adapter für eine RecyclerView, die
+ * Chat-Nachrichten in einer Chat-Aktivität anzeigt.
+ * Er verwaltet die Anzeige von gesendeten und empfangenen Nachrichten und
+ * ordnet sie entsprechend dem Sender an.
+ * 
+ * @autor: Mohamed Bebba
  */
-public class ChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatMessageModel, ChatRecyclerAdapter.ChatModelViewHolder> {
+public class ChatRecyclerAdapter
+        extends FirestoreRecyclerAdapter<ChatMessageModel, ChatRecyclerAdapter.ChatModelViewHolder> {
 
     // Kontext der Anwendung
     Context context;
@@ -29,7 +33,8 @@ public class ChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatMessageMod
     /**
      * Konstruktor für den ChatRecyclerAdapter.
      *
-     * @param options Die FirestoreRecyclerOptions, die die Abfrageergebnisse enthalten.
+     * @param options Die FirestoreRecyclerOptions, die die Abfrageergebnisse
+     *                enthalten.
      * @param context Der Kontext, in dem der Adapter verwendet wird.
      */
     public ChatRecyclerAdapter(@NonNull FirestoreRecyclerOptions<ChatMessageModel> options, Context context) {
@@ -38,22 +43,27 @@ public class ChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatMessageMod
     }
 
     /**
-     * Bindet die Daten eines ChatMessageModel an die ViewHolder-Komponenten und ordnet die Nachrichten entsprechend dem Sender an.
+     * Bindet die Daten eines ChatMessageModel an die ViewHolder-Komponenten und
+     * ordnet die Nachrichten entsprechend dem Sender an.
      *
      * @param holder   Der ViewHolder, der die Ansichtselemente hält.
      * @param position Die Position des Elements im Adapter.
-     * @param model    Das ChatMessageModel-Objekt, das an die Ansicht gebunden wird.
+     * @param model    Das ChatMessageModel-Objekt, das an die Ansicht gebunden
+     *                 wird.
      */
     @Override
-    protected void onBindViewHolder(@NonNull ChatModelViewHolder holder, int position, @NonNull ChatMessageModel model) {
+    protected void onBindViewHolder(@NonNull ChatModelViewHolder holder, int position,
+            @NonNull ChatMessageModel model) {
         // Überprüfen, ob die Nachricht vom aktuellen Benutzer gesendet wurde
         if (model.getSenderId().equals(FirebaseUtil.currentUserId())) {
-            // Wenn der aktuelle Benutzer der Absender ist, wird die Nachricht auf der rechten Seite angezeigt
+            // Wenn der aktuelle Benutzer der Absender ist, wird die Nachricht auf der
+            // rechten Seite angezeigt
             holder.leftChatLayout.setVisibility(View.GONE);
             holder.rightChatLayout.setVisibility(View.VISIBLE);
             holder.rightChatTextview.setText(model.getMessage());
         } else {
-            // Wenn die Nachricht von einem anderen Benutzer stammt, wird sie auf der linken Seite angezeigt
+            // Wenn die Nachricht von einem anderen Benutzer stammt, wird sie auf der linken
+            // Seite angezeigt
             holder.rightChatLayout.setVisibility(View.GONE);
             holder.leftChatLayout.setVisibility(View.VISIBLE);
             holder.leftChatTextview.setText(model.getMessage());
@@ -61,9 +71,11 @@ public class ChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatMessageMod
     }
 
     /**
-     * Erstellt einen neuen ViewHolder, wenn keine vorhandenen ViewHolder mehr für das Recycling zur Verfügung stehen.
+     * Erstellt einen neuen ViewHolder, wenn keine vorhandenen ViewHolder mehr für
+     * das Recycling zur Verfügung stehen.
      *
-     * @param parent   Die übergeordnete ViewGroup, zu der diese Ansicht hinzugefügt wird.
+     * @param parent   Die übergeordnete ViewGroup, zu der diese Ansicht hinzugefügt
+     *                 wird.
      * @param viewType Der Typ der neuen Ansicht.
      * @return Ein neues ChatModelViewHolder-Objekt.
      */
@@ -77,12 +89,15 @@ public class ChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatMessageMod
 
     /**
      * Der ChatModelViewHolder hält die UI-Komponenten für jedes Listenelement.
-     * Er enthält die Layouts und TextViews für gesendete und empfangene Nachrichten.
+     * Er enthält die Layouts und TextViews für gesendete und empfangene
+     * Nachrichten.
      */
     static class ChatModelViewHolder extends RecyclerView.ViewHolder {
 
-        // Layouts und TextViews für die Anzeige von gesendeten und empfangenen Nachrichten
-        LinearLayout leftChatLayout, rightChatLayout; // Layouts für Nachrichten des anderen Benutzers und des aktuellen Benutzers
+        // Layouts und TextViews für die Anzeige von gesendeten und empfangenen
+        // Nachrichten
+        LinearLayout leftChatLayout, rightChatLayout; // Layouts für Nachrichten des anderen Benutzers und des aktuellen
+                                                      // Benutzers
         TextView leftChatTextview, rightChatTextview; // TextViews für die Nachrichteninhalte
 
         /**

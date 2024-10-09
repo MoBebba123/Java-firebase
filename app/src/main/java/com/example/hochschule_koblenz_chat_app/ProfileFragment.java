@@ -32,9 +32,12 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /**
- * Das ProfileFragment ermöglicht dem Benutzer das Anzeigen und Bearbeiten seines Profils.
- * Es bietet Funktionen zum Aktualisieren des Benutzernamens und Profilbildes sowie zum Abmelden.
- * Autor: Mohamed Bebba
+ * Das ProfileFragment ermöglicht dem Benutzer das Anzeigen und Bearbeiten
+ * seines Profils.
+ * Es bietet Funktionen zum Aktualisieren des Benutzernamens und Profilbildes
+ * sowie zum Abmelden.
+ * 
+ * @autor: Mohamed Bebba
  */
 public class ProfileFragment extends Fragment {
 
@@ -64,36 +67,38 @@ public class ProfileFragment extends Fragment {
      * Wird aufgerufen, wenn das Fragment erstellt wird.
      * Hier wird der Launcher für die Bildauswahl initialisiert.
      *
-     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand des Fragments enthält.
+     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand
+     *                           des Fragments enthält.
      */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         imagePickLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if(result.getResultCode() == Activity.RESULT_OK){
+                    if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent data = result.getData();
-                        if(data != null && data.getData() != null){
+                        if (data != null && data.getData() != null) {
                             selectedImageUri = data.getData();
                             AndroidUtil.setProfilePic(getContext(), selectedImageUri, profilePic);
                         }
                     }
-                }
-        );
+                });
     }
 
     /**
      * Erstellt und initialisiert die Benutzeroberfläche des Fragments.
      *
-     * @param inflater Inflater zum Erstellen der Ansicht.
-     * @param container Das Eltern-View, zu dem die Ansicht hinzugefügt wird.
-     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand des Fragments enthält.
+     * @param inflater           Inflater zum Erstellen der Ansicht.
+     * @param container          Das Eltern-View, zu dem die Ansicht hinzugefügt
+     *                           wird.
+     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand
+     *                           des Fragments enthält.
      * @return Die erstellte View für das Fragment.
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
+            Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         profilePic = view.findViewById(R.id.profile_image_view);
         usernameInput = view.findViewById(R.id.profile_username);
         phoneInput = view.findViewById(R.id.profile_phone);
@@ -139,7 +144,8 @@ public class ProfileFragment extends Fragment {
     }
 
     /**
-     * Verarbeitet den Klick auf den Update-Button. Überprüft die Eingaben und lädt ggf. ein neues Profilbild hoch.
+     * Verarbeitet den Klick auf den Update-Button. Überprüft die Eingaben und lädt
+     * ggf. ein neues Profilbild hoch.
      */
     void updateBtnClick() {
         String newUsername = usernameInput.getText().toString();
@@ -175,7 +181,8 @@ public class ProfileFragment extends Fragment {
     }
 
     /**
-     * Ruft die aktuellen Benutzerdaten und das Profilbild ab und zeigt sie in den UI-Komponenten an.
+     * Ruft die aktuellen Benutzerdaten und das Profilbild ab und zeigt sie in den
+     * UI-Komponenten an.
      */
     void getUserData() {
         setInProgress(true);
@@ -199,7 +206,8 @@ public class ProfileFragment extends Fragment {
     }
 
     /**
-     * Setzt den Fortschrittsstatus und aktualisiert die Sichtbarkeit der UI-Komponenten entsprechend.
+     * Setzt den Fortschrittsstatus und aktualisiert die Sichtbarkeit der
+     * UI-Komponenten entsprechend.
      *
      * @param inProgress Gibt an, ob die Aktion im Gange ist.
      */

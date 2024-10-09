@@ -21,12 +21,16 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 /**
- * Der SearchUserRecyclerAdapter ist ein Adapter für eine RecyclerView, die Benutzerprofile anzeigt,
- * basierend auf einer Firestore-Abfrage. Er ermöglicht das Durchsuchen und Anklicken von Benutzerprofilen,
+ * Der SearchUserRecyclerAdapter ist ein Adapter für eine RecyclerView, die
+ * Benutzerprofile anzeigt,
+ * basierend auf einer Firestore-Abfrage. Er ermöglicht das Durchsuchen und
+ * Anklicken von Benutzerprofilen,
  * um eine Chat-Aktivität zu starten.
- * Autor: Mohamed Bebba
+ * 
+ * @autor: Mohamed Bebba
  */
-public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserModel, SearchUserRecyclerAdapter.UserModelViewHolder> {
+public class SearchUserRecyclerAdapter
+        extends FirestoreRecyclerAdapter<UserModel, SearchUserRecyclerAdapter.UserModelViewHolder> {
 
     // Kontext der Anwendung
     Context context;
@@ -34,7 +38,8 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
     /**
      * Konstruktor für den SearchUserRecyclerAdapter.
      *
-     * @param options Die FirestoreRecyclerOptions, die die Abfrageergebnisse enthalten.
+     * @param options Die FirestoreRecyclerOptions, die die Abfrageergebnisse
+     *                enthalten.
      * @param context Der Kontext, in dem der Adapter verwendet wird.
      */
     public SearchUserRecyclerAdapter(@NonNull FirestoreRecyclerOptions<UserModel> options, Context context) {
@@ -51,7 +56,8 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
      */
     @Override
     protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
-        // Setzen des Benutzernamens und der Telefonnummer auf die entsprechenden TextViews
+        // Setzen des Benutzernamens und der Telefonnummer auf die entsprechenden
+        // TextViews
         holder.usernameText.setText(model.getUsername());
         holder.phoneText.setText(model.getPhone());
 
@@ -79,9 +85,11 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
     }
 
     /**
-     * Erstellt einen neuen ViewHolder, wenn keine vorhandenen ViewHolder mehr für das Recycling zur Verfügung stehen.
+     * Erstellt einen neuen ViewHolder, wenn keine vorhandenen ViewHolder mehr für
+     * das Recycling zur Verfügung stehen.
      *
-     * @param parent   Die übergeordnete ViewGroup, zu der diese Ansicht hinzugefügt wird.
+     * @param parent   Die übergeordnete ViewGroup, zu der diese Ansicht hinzugefügt
+     *                 wird.
      * @param viewType Der Typ der neuen Ansicht.
      * @return Ein neues UserModelViewHolder-Objekt.
      */
@@ -95,7 +103,8 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
 
     /**
      * Der UserModelViewHolder hält die UI-Komponenten für jedes Listenelement.
-     * Er enthält die TextViews für den Benutzernamen, die Telefonnummer und das ImageView für das Profilbild.
+     * Er enthält die TextViews für den Benutzernamen, die Telefonnummer und das
+     * ImageView für das Profilbild.
      */
     class UserModelViewHolder extends RecyclerView.ViewHolder {
         // UI-Komponenten für jedes Listenelement

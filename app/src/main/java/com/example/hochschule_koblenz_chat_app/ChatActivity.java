@@ -40,8 +40,10 @@ import okhttp3.Response;
 
 /**
  * Die ChatActivity verwaltet die Chat-Funktionalität zwischen zwei Benutzern.
- * Sie zeigt die Nachrichten an, ermöglicht das Senden von Nachrichten und Benachrichtigungen.
- * Autor: Mohamed Bebba
+ * Sie zeigt die Nachrichten an, ermöglicht das Senden von Nachrichten und
+ * Benachrichtigungen.
+ * 
+ * @autor: Mohamed Bebba
  */
 public class ChatActivity extends AppCompatActivity {
 
@@ -116,23 +118,27 @@ public class ChatActivity extends AppCompatActivity {
      * Richtet die RecyclerView für die Anzeige der Chat-Nachrichten ein.
      */
     void setupChatRecyclerView() {
-        // Abfrage für alle Nachrichten im Chatraum, sortiert nach Zeitstempel in absteigender Reihenfolge
+        // Abfrage für alle Nachrichten im Chatraum, sortiert nach Zeitstempel in
+        // absteigender Reihenfolge
         Query query = FirebaseUtil.getChatroomMessageReference(chatroomId)
                 .orderBy("timestamp", Query.Direction.DESCENDING);
 
-        // FirestoreRecyclerOptions erstellen, um die Abfrageergebnisse in die RecyclerView zu laden
+        // FirestoreRecyclerOptions erstellen, um die Abfrageergebnisse in die
+        // RecyclerView zu laden
         FirestoreRecyclerOptions<ChatMessageModel> options = new FirestoreRecyclerOptions.Builder<ChatMessageModel>()
                 .setQuery(query, ChatMessageModel.class).build();
 
         // Initialisieren des Adapters mit den Optionen und Setzen auf die RecyclerView
         adapter = new ChatRecyclerAdapter(options, getApplicationContext());
         LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setReverseLayout(true); // Setzen der Layout-Richtung auf umgekehrt, um die neuesten Nachrichten oben anzuzeigen
+        manager.setReverseLayout(true); // Setzen der Layout-Richtung auf umgekehrt, um die neuesten Nachrichten oben
+                                        // anzuzeigen
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
         adapter.startListening(); // Startet das Anhören von Änderungen in der Firestore-Abfrage
 
-        // Automatisches Scrollen zur neuesten Nachricht, wenn neue Nachrichten eingefügt werden
+        // Automatisches Scrollen zur neuesten Nachricht, wenn neue Nachrichten
+        // eingefügt werden
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
@@ -143,7 +149,8 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     /**
-     * Sendet eine Nachricht an den anderen Benutzer und aktualisiert das ChatroomModel.
+     * Sendet eine Nachricht an den anderen Benutzer und aktualisiert das
+     * ChatroomModel.
      *
      * @param message Die zu sendende Nachricht
      */
@@ -155,7 +162,8 @@ public class ChatActivity extends AppCompatActivity {
         FirebaseUtil.getChatroomReference(chatroomId).set(chatroomModel);
 
         // Erstellen und Senden des ChatMessageModels
-        ChatMessageModel chatMessageModel = new ChatMessageModel(message, FirebaseUtil.currentUserId(), Timestamp.now());
+        ChatMessageModel chatMessageModel = new ChatMessageModel(message, FirebaseUtil.currentUserId(),
+                Timestamp.now());
         FirebaseUtil.getChatroomMessageReference(chatroomId).add(chatMessageModel)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
@@ -169,7 +177,8 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     /**
-     * Holt das bestehende ChatroomModel oder erstellt ein neues, falls es noch nicht existiert.
+     * Holt das bestehende ChatroomModel oder erstellt ein neues, falls es noch
+     * nicht existiert.
      */
     void getOrCreateChatroomModel() {
         FirebaseUtil.getChatroomReference(chatroomId).get().addOnCompleteListener(task -> {
@@ -181,8 +190,7 @@ public class ChatActivity extends AppCompatActivity {
                             chatroomId,
                             Arrays.asList(FirebaseUtil.currentUserId(), otherUser.getUserId()),
                             Timestamp.now(),
-                            ""
-                    );
+                            "");
                     FirebaseUtil.getChatroomReference(chatroomId).set(chatroomModel);
                 }
             }
@@ -228,7 +236,8 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     /**
-     * Führt einen API-Aufruf zur Firebase Cloud Messaging API aus, um die Benachrichtigung zu senden.
+     * Führt einen API-Aufruf zur Firebase Cloud Messaging API aus, um die
+     * Benachrichtigung zu senden.
      *
      * @param jsonObject Das JSON-Objekt, das die Benachrichtigungsdaten enthält
      */

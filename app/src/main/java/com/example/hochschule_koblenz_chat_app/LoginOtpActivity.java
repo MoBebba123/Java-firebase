@@ -28,13 +28,17 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Die LoginOtpActivity verwaltet die OTP (One-Time Password) Verifizierung für die Benutzeranmeldung.
- * Sie bietet die Möglichkeit, ein OTP zu senden, das OTP einzugeben und den Benutzer nach erfolgreicher Verifizierung anzumelden.
- * Autor: Mohamed Bebba
+ * Die LoginOtpActivity verwaltet die OTP (One-Time Password) Verifizierung für
+ * die Benutzeranmeldung.
+ * Sie bietet die Möglichkeit, ein OTP zu senden, das OTP einzugeben und den
+ * Benutzer nach erfolgreicher Verifizierung anzumelden.
+ * 
+ * @autor: Mohamed Bebba
  */
 public class LoginOtpActivity extends AppCompatActivity {
 
-    // Variablen für die Telefonnummer, Timeout, Verifizierungscode und Resending Token
+    // Variablen für die Telefonnummer, Timeout, Verifizierungscode und Resending
+    // Token
     String phoneNumber;
     Long timeoutSeconds = 60L; // Timeout in Sekunden für das OTP
     String verificationCode; // Der vom Server gesendete Verifizierungscode
@@ -89,41 +93,41 @@ public class LoginOtpActivity extends AppCompatActivity {
      * Sendet ein OTP an die angegebene Telefonnummer.
      *
      * @param phoneNumber Telefonnummer, an die das OTP gesendet wird
-     * @param isResend Flag, ob es sich um eine erneute Sendung handelt
+     * @param isResend    Flag, ob es sich um eine erneute Sendung handelt
      */
     void sendOtp(String phoneNumber, boolean isResend) {
         startResendTimer(); // Timer für das erneute Senden des OTP starten
         setInProgress(true); // Zeigt die Fortschrittsanzeige an
-        PhoneAuthOptions.Builder builder =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phoneNumber) // Telefonnummer für die Verifizierung
-                        .setTimeout(timeoutSeconds, TimeUnit.SECONDS) // Timeout-Einstellung
-                        .setActivity(this) // Die aktuelle Aktivität für den Callback
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                // Bei erfolgreicher Verifizierung sofort anmelden
-                                signIn(phoneAuthCredential);
-                                setInProgress(false);
-                            }
+        PhoneAuthOptions.Builder builder = PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber(phoneNumber) // Telefonnummer für die Verifizierung
+                .setTimeout(timeoutSeconds, TimeUnit.SECONDS) // Timeout-Einstellung
+                .setActivity(this) // Die aktuelle Aktivität für den Callback
+                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                        // Bei erfolgreicher Verifizierung sofort anmelden
+                        signIn(phoneAuthCredential);
+                        setInProgress(false);
+                    }
 
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                // Fehler bei der Verifizierung
-                                AndroidUtil.showToast(getApplicationContext(), "OTP-Verifizierung fehlgeschlagen");
-                                setInProgress(false);
-                            }
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        // Fehler bei der Verifizierung
+                        AndroidUtil.showToast(getApplicationContext(), "OTP-Verifizierung fehlgeschlagen");
+                        setInProgress(false);
+                    }
 
-                            @Override
-                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                // OTP wurde erfolgreich gesendet
-                                super.onCodeSent(s, forceResendingToken);
-                                verificationCode = s; // Speichern des Verifizierungscodes
-                                resendingToken = forceResendingToken; // Speichern des Resending Tokens
-                                AndroidUtil.showToast(getApplicationContext(), "OTP erfolgreich gesendet");
-                                setInProgress(false);
-                            }
-                        });
+                    @Override
+                    public void onCodeSent(@NonNull String s,
+                            @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                        // OTP wurde erfolgreich gesendet
+                        super.onCodeSent(s, forceResendingToken);
+                        verificationCode = s; // Speichern des Verifizierungscodes
+                        resendingToken = forceResendingToken; // Speichern des Resending Tokens
+                        AndroidUtil.showToast(getApplicationContext(), "OTP erfolgreich gesendet");
+                        setInProgress(false);
+                    }
+                });
         // Unterscheidung zwischen erstmaligem Senden und erneutem Senden des OTP
         if (isResend) {
             PhoneAuthProvider.verifyPhoneNumber(builder.setForceResendingToken(resendingToken).build());
@@ -135,7 +139,8 @@ public class LoginOtpActivity extends AppCompatActivity {
     /**
      * Meldet den Benutzer mit den angegebenen Anmeldeinformationen an.
      *
-     * @param phoneAuthCredential Anmeldeinformationen für die Telefonauthentifizierung
+     * @param phoneAuthCredential Anmeldeinformationen für die
+     *                            Telefonauthentifizierung
      */
     void signIn(PhoneAuthCredential phoneAuthCredential) {
         setInProgress(true); // Zeigt die Fortschrittsanzeige an

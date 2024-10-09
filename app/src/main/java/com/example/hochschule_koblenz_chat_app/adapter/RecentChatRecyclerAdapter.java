@@ -22,11 +22,15 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 /**
- * Der RecentChatRecyclerAdapter ist ein Adapter für eine RecyclerView, die die letzten Chats des Benutzers anzeigt.
- * Er ermöglicht das Durchsuchen der Chatliste und den Übergang zur Chat-Aktivität durch Anklicken eines Chat-Elements.
- * Autor: Mohamed Bebba
+ * Der RecentChatRecyclerAdapter ist ein Adapter für eine RecyclerView, die die
+ * letzten Chats des Benutzers anzeigt.
+ * Er ermöglicht das Durchsuchen der Chatliste und den Übergang zur
+ * Chat-Aktivität durch Anklicken eines Chat-Elements.
+ * 
+ * @autor: Mohamed Bebba
  */
-public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<ChatroomModel, RecentChatRecyclerAdapter.ChatroomModelViewHolder> {
+public class RecentChatRecyclerAdapter
+        extends FirestoreRecyclerAdapter<ChatroomModel, RecentChatRecyclerAdapter.ChatroomModelViewHolder> {
 
     // Kontext der Anwendung
     Context context;
@@ -34,7 +38,8 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<Chatroom
     /**
      * Konstruktor für den RecentChatRecyclerAdapter.
      *
-     * @param options Die FirestoreRecyclerOptions, die die Abfrageergebnisse enthalten.
+     * @param options Die FirestoreRecyclerOptions, die die Abfrageergebnisse
+     *                enthalten.
      * @param context Der Kontext, in dem der Adapter verwendet wird.
      */
     public RecentChatRecyclerAdapter(@NonNull FirestoreRecyclerOptions<ChatroomModel> options, Context context) {
@@ -50,13 +55,15 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<Chatroom
      * @param model    Das ChatroomModel-Objekt, das an die Ansicht gebunden wird.
      */
     @Override
-    protected void onBindViewHolder(@NonNull ChatroomModelViewHolder holder, int position, @NonNull ChatroomModel model) {
+    protected void onBindViewHolder(@NonNull ChatroomModelViewHolder holder, int position,
+            @NonNull ChatroomModel model) {
         // Abrufen der anderen Benutzerinformationen im Chatraum
         FirebaseUtil.getOtherUserFromChatroom(model.getUserIds())
                 .get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         // Überprüfen, ob die letzte Nachricht vom aktuellen Benutzer gesendet wurde
-                        boolean lastMessageSentByMe = model.getLastMessageSenderId().equals(FirebaseUtil.currentUserId());
+                        boolean lastMessageSentByMe = model.getLastMessageSenderId()
+                                .equals(FirebaseUtil.currentUserId());
 
                         // Konvertieren des Firestore-Dokuments in ein UserModel-Objekt
                         UserModel otherUserModel = task.getResult().toObject(UserModel.class);
@@ -83,7 +90,8 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<Chatroom
                         // Klick-Listener für das Listenelement, um zur ChatActivity zu navigieren
                         holder.itemView.setOnClickListener(v -> {
                             Intent intent = new Intent(context, ChatActivity.class);
-                            AndroidUtil.passUserModelAsIntent(intent, otherUserModel); // Übergibt die Benutzerdaten an die ChatActivity
+                            AndroidUtil.passUserModelAsIntent(intent, otherUserModel); // Übergibt die Benutzerdaten an
+                                                                                       // die ChatActivity
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(intent);
                         });
@@ -93,9 +101,11 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<Chatroom
     }
 
     /**
-     * Erstellt einen neuen ViewHolder, wenn keine vorhandenen ViewHolder mehr für das Recycling zur Verfügung stehen.
+     * Erstellt einen neuen ViewHolder, wenn keine vorhandenen ViewHolder mehr für
+     * das Recycling zur Verfügung stehen.
      *
-     * @param parent   Die übergeordnete ViewGroup, zu der diese Ansicht hinzugefügt wird.
+     * @param parent   Die übergeordnete ViewGroup, zu der diese Ansicht hinzugefügt
+     *                 wird.
      * @param viewType Der Typ der neuen Ansicht.
      * @return Ein neues ChatroomModelViewHolder-Objekt.
      */
@@ -109,7 +119,8 @@ public class RecentChatRecyclerAdapter extends FirestoreRecyclerAdapter<Chatroom
 
     /**
      * Der ChatroomModelViewHolder hält die UI-Komponenten für jedes Listenelement.
-     * Er enthält die TextViews für den Benutzernamen, die letzte Nachricht, die Zeit der letzten Nachricht und das ImageView für das Profilbild.
+     * Er enthält die TextViews für den Benutzernamen, die letzte Nachricht, die
+     * Zeit der letzten Nachricht und das ImageView für das Profilbild.
      */
     class ChatroomModelViewHolder extends RecyclerView.ViewHolder {
         // UI-Komponenten für jedes Listenelement

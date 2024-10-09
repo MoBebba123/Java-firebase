@@ -13,10 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hbb20.CountryCodePicker;
 
 /**
- * Die LoginPhoneNumberActivity ermöglicht es dem Benutzer, sich mit seiner Telefonnummer anzumelden.
- * Sie stellt eine Benutzeroberfläche zur Eingabe der Telefonnummer bereit und leitet den Benutzer
+ * Die LoginPhoneNumberActivity ermöglicht es dem Benutzer, sich mit seiner
+ * Telefonnummer anzumelden.
+ * Sie stellt eine Benutzeroberfläche zur Eingabe der Telefonnummer bereit und
+ * leitet den Benutzer
  * zur OTP-Überprüfungsseite weiter.
- * Autor: Mohamed Bebba
+ * 
+ * @autor: Mohamed Bebba
  */
 public class LoginPhoneNumberActivity extends AppCompatActivity {
 
@@ -30,9 +33,11 @@ public class LoginPhoneNumberActivity extends AppCompatActivity {
 
     /**
      * Diese Methode wird aufgerufen, wenn die Aktivität erstellt wird.
-     * Sie initialisiert die UI-Komponenten und setzt einen Klick-Listener für den Button.
+     * Sie initialisiert die UI-Komponenten und setzt einen Klick-Listener für den
+     * Button.
      *
-     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand der Aktivität enthält.
+     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand
+     *                           der Aktivität enthält.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,8 @@ public class LoginPhoneNumberActivity extends AppCompatActivity {
         // Verknüpfen des CountryCodePickers mit dem Eingabefeld für die Telefonnummer.
         countryCodePicker.registerCarrierNumberEditText(phoneInput);
 
-        // Klick-Listener für den Button, um die Telefonnummer zu überprüfen und zur OTP-Überprüfungsseite zu wechseln.
+        // Klick-Listener für den Button, um die Telefonnummer zu überprüfen und zur
+        // OTP-Überprüfungsseite zu wechseln.
         sendOtpBtn.setOnClickListener((v) -> {
             // Überprüfen, ob die eingegebene Telefonnummer gültig ist.
             if (!countryCodePicker.isValidFullNumber()) {

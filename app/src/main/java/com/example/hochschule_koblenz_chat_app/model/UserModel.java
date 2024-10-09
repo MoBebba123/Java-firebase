@@ -4,9 +4,12 @@ import com.google.firebase.Timestamp;
 
 /**
  * Die UserModel-Klasse repräsentiert die Benutzerdaten in der Anwendung.
- * Sie enthält Informationen wie die Telefonnummer, den Benutzernamen, den Erstellungszeitpunkt,
- * die Benutzer-ID und den FCM-Token (Firebase Cloud Messaging Token) des Benutzers.
- * Autor: Mohamed Bebba
+ * Sie enthält Informationen wie die Telefonnummer, den Benutzernamen, den
+ * Erstellungszeitpunkt,
+ * die Benutzer-ID und den FCM-Token (Firebase Cloud Messaging Token) des
+ * Benutzers.
+ * 
+ * @autor: Mohamed Bebba
  */
 public class UserModel {
 

@@ -17,9 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hochschule_koblenz_chat_app.utils.FirebaseUtil;
 
 /**
- * Die SearchUserActivity-Klasse ermöglicht es dem Benutzer, nach anderen Benutzern in der Anwendung zu suchen.
- * Sie bietet eine Benutzeroberfläche für die Sucheingabe und zeigt die Suchergebnisse in einer RecyclerView an.
- * Autor: Mohamed Bebba
+ * Die SearchUserActivity-Klasse ermöglicht es dem Benutzer, nach anderen
+ * Benutzern in der Anwendung zu suchen.
+ * Sie bietet eine Benutzeroberfläche für die Sucheingabe und zeigt die
+ * Suchergebnisse in einer RecyclerView an.
+ * 
+ * @autor: Mohamed Bebba
  */
 public class SearchUserActivity extends AppCompatActivity {
 
@@ -37,9 +40,11 @@ public class SearchUserActivity extends AppCompatActivity {
 
     /**
      * Diese Methode wird aufgerufen, wenn die Aktivität erstellt wird.
-     * Sie initialisiert die UI-Komponenten und setzt Klick-Listener für die Schaltflächen.
+     * Sie initialisiert die UI-Komponenten und setzt Klick-Listener für die
+     * Schaltflächen.
      *
-     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand der Aktivität enthält.
+     * @param savedInstanceState Das Bundle-Objekt, das den gespeicherten Zustand
+     *                           der Aktivität enthält.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +63,8 @@ public class SearchUserActivity extends AppCompatActivity {
         // Klick-Listener für den Zurück-Button, um zur vorherigen Seite zu navigieren.
         backButton.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
-        // Klick-Listener für den Such-Button, um die Suche basierend auf dem eingegebenen Benutzernamen auszuführen.
+        // Klick-Listener für den Such-Button, um die Suche basierend auf dem
+        // eingegebenen Benutzernamen auszuführen.
         searchButton.setOnClickListener(v -> {
             String searchTerm = searchInput.getText().toString();
             if (searchTerm.isEmpty()) {
@@ -71,14 +77,17 @@ public class SearchUserActivity extends AppCompatActivity {
             setupSearchRecyclerView(searchTerm);
         });
 
-        // Initialisierung der RecyclerView mit allen Benutzern, wenn die Aktivität gestartet wird.
+        // Initialisierung der RecyclerView mit allen Benutzern, wenn die Aktivität
+        // gestartet wird.
         setupSearchRecyclerView("");
     }
 
     /**
-     * Diese Methode initialisiert die RecyclerView mit einer Abfrage, um Benutzer basierend auf dem Suchbegriff zu filtern.
+     * Diese Methode initialisiert die RecyclerView mit einer Abfrage, um Benutzer
+     * basierend auf dem Suchbegriff zu filtern.
      *
-     * @param searchTerm Der Suchbegriff, der verwendet wird, um Benutzer zu filtern.
+     * @param searchTerm Der Suchbegriff, der verwendet wird, um Benutzer zu
+     *                   filtern.
      */
     void setupSearchRecyclerView(String searchTerm) {
         // Erstellen einer Abfrage, um Benutzer aus der Firebase-Datenbank zu filtern.
@@ -90,7 +99,8 @@ public class SearchUserActivity extends AppCompatActivity {
         FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>()
                 .setQuery(query, UserModel.class).build();
 
-        // Initialisieren des Adapters mit den Optionen und Festlegen auf die RecyclerView.
+        // Initialisieren des Adapters mit den Optionen und Festlegen auf die
+        // RecyclerView.
         adapter = new SearchUserRecyclerAdapter(options, getApplicationContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

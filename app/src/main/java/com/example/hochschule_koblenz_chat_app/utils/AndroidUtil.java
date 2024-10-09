@@ -11,10 +11,13 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.hochschule_koblenz_chat_app.model.UserModel;
 
 /**
- * Die AndroidUtil-Klasse stellt Hilfsfunktionen für allgemeine Android-Operationen bereit,
- * wie das Anzeigen von Toast-Nachrichten, das Übergeben und Abrufen von UserModel-Daten
+ * Die AndroidUtil-Klasse stellt Hilfsfunktionen für allgemeine
+ * Android-Operationen bereit,
+ * wie das Anzeigen von Toast-Nachrichten, das Übergeben und Abrufen von
+ * UserModel-Daten
  * über Intents und das Setzen von Profilbildern in ImageViews.
- * Autor: Mohamed Bebba
+ * 
+ * @autor: Mohamed Bebba
  */
 public class AndroidUtil {
 
